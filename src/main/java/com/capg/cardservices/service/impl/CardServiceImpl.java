@@ -1,7 +1,9 @@
 package com.capg.cardservices.service.impl;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -76,5 +78,15 @@ public class CardServiceImpl implements CardService {
 		}
 		logger.info("Getting recent transactions");
 		return txList;
+	}
+	
+	@Override
+	public String payCreditCardBill(Long cardNo,Double payableAmount) {
+		System.out.println("REQUEST IN CREDIT CARD BILL PAYMENT SERVICE");
+		Card credit_card = cardDao.findByCardNo(cardNo);		
+		double newBalance = credit_card.getCreditLimit() + payableAmount;
+		credit_card.setCreditLimit(newBalance);
+		cardDao.save(credit_card);		
+		return "SUCCESS!";
 	}
 }

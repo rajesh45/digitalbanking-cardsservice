@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -14,10 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "CARD")
+@XmlRootElement
 public class Card {
 	//card_no
 	@Id
 	@Column(name = "card_no")
+	@XmlElement
 	Long cardNo ;
 	
 	//cvv
@@ -42,12 +46,13 @@ public class Card {
 	String cardCompany;
 	
 	//credit_limit
+	@XmlElement
 	@Column(name = "credit_limit")
 	double creditLimit; 
 	
 	//card_status
 	@Column(name = "card_status")
-	boolean cardStatus ;
+	Integer cardStatus ;
 	
 	public Long getCardNo() {
 		return cardNo;
@@ -91,10 +96,10 @@ public class Card {
 	public void setCreditLimit(double creditLimit) {
 		this.creditLimit = creditLimit;
 	}
-	public boolean isCardStatus() {
+	public Integer isCardStatus() {
 		return cardStatus;
 	}
-	public void setCardStatus(boolean cardStatus) {
+	public void setCardStatus(Integer cardStatus) {
 		this.cardStatus = cardStatus;
 	}
 	@Override
