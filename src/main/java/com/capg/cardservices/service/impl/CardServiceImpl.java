@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.capg.cardservices.dao.CardDAO;
 import com.capg.cardservices.dao.TransactionDAO;
@@ -81,6 +83,7 @@ public class CardServiceImpl implements CardService {
 	}
 	
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public String payCreditCardBill(Long cardNo,Double payableAmount) {
 		System.out.println("REQUEST IN CREDIT CARD BILL PAYMENT SERVICE");
 		Card credit_card = cardDao.findByCardNo(cardNo);		
