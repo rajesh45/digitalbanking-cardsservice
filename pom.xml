@@ -5,7 +5,7 @@
 	<groupId>com.capg.cardservices</groupId>
 	<artifactId>cardservices</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>Card Services</name>
 	<description>Card Services</description>
@@ -57,9 +57,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-   			<groupId>org.json</groupId>
-   			<artifactId>json</artifactId>
-   			</dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -129,6 +129,15 @@
 	</profiles>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
